@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kos Anyel Jimmy — Hunian Strategis & Terjangkau</title>
+    <link
+      rel="icon"
+      href="https://raw.githubusercontent.com/arnoldusxyz/AJ/d46d3644af86edf76f6f40efd90a6606f6682125/logo_pertama.png"
+    />
+
+    <!-- SEO -->
+    <meta
+      name="description"
+      content="Kos Anyel Jimmy — Hunian strategis dan nyaman di Maumere. Mulai dari Rp700.000 per bulan. Akses mudah ke kampus, transportasi, dan pusat kota."
+    />
+    <meta
+      name="keywords"
+      content="kos maumere, kos murah, kos strategis, kos mahasiswa, kost maumere"
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Open+Sans:wght@300;400;600&family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              moss: "#2F7A4C",
+              mosslight: "#4FA86C",
+              mustard: "#F6C84C",
+              cocoa: "#7A4F3A",
+              "cocoa-50": "#F6EFEA",
+            },
+            fontFamily: {
+              heading: ["Montserrat", "sans-serif"],
+              body: ["Poppins", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- AOS Animation -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+
+      .card-shadow {
+        box-shadow: 0 10px 25px rgba(47, 122, 76, 0.15);
+      }
+      .img-hover {
+        transition: transform 0.5s ease, opacity 0.3s ease;
+      }
+      .img-hover:hover {
+        transform: scale(1.05);
+        opacity: 0.9;
+      }
+
+      .hamburger {
+        cursor: pointer;
+        width: 36px;
+        height: 36px;
+        display: block;
+      }
+
+      .hamburger .line {
+        fill: none;
+        stroke: white;
+        stroke-width: 6;
+        stroke-linecap: round;
+        transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.2, 1),
+          opacity 0.25s ease;
+        transform-origin: 50% 50%;
+      }
+
+      .hamburger .top {
+        transform: translateY(0);
+      }
+      .hamburger .middle {
+        transform: translateY(15px);
+      }
+      .hamburger .bottom {
+        transform: translateY(30px);
+      }
+
+      .hamburger.active .top {
+        transform: rotate(45deg) translate(7px, 7px);
+      }
+      .hamburger.active .middle {
+        opacity: 0;
+        transform: scaleX(0);
+      }
+      .hamburger.active .bottom {
+        transform: rotate(-45deg) translate(7px, -7px);
+      }
+
+      #menu {
+        transition: all 0.32s cubic-bezier(0.2, 0.9, 0.2, 1);
+        background-color: rgba(47, 122, 76, 0.95);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+      }
+
+      /* === LOADER STYLING === */
+      #loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        height: 100dvh; /* Dynamic viewport height for mobile */
+        background: linear-gradient(to bottom right, #2f7a4c, #4fa86c);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+        text-align: center;
+        z-index: 9999;
+        transition: opacity 0.6s ease, visibility 0.6s ease;
+      }
+
+      #loader.fade-out {
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      .loader-logo {
+        width: 100px;
+        height: 100px;
+        border-radius: 20px;
+        animation: pulse 2s infinite ease-in-out;
+        box-shadow: 0 0 25px rgba(255, 255, 255, 0.25);
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+        50% {
+          transform: scale(1.08);
+          opacity: 0.85;
+        }
+      }
+
+      .loader-text {
+        margin-top: 1rem;
+        font-family: "Poppins", sans-serif;
+        color: white;
+        font-size: 1rem;
+        letter-spacing: 0.5px;
+        animation: blink 2s infinite ease-in-out;
+      }
+
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="font-body text-gray-800 antialiased leading-relaxed">
+    <!-- === LOADER === -->
+    <div id="loader">
+      <img
+        src="https://raw.githubusercontent.com/arnoldusxyz/AJ/d46d3644af86edf76f6f40efd90a6606f6682125/logo_kedua.png"
+        alt="Logo Kos Anyel Jimmy"
+        class="loader-logo"
+      />
+      <p class="loader-text">Memuat data kos...</p>
+    </div>
+
+    <!-- HEADER -->
+    <header class="bg-moss/90 backdrop-blur sticky top-0 z-40 shadow-sm">
+      <div
+        class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between"
+      >
+        <a href="#" class="flex items-center gap-3">
+          <img
+            src="https://raw.githubusercontent.com/arnoldusxyz/AJ/d46d3644af86edf76f6f40efd90a6606f6682125/logo_kedua.png"
+            alt="Logo AJ"
+            class="w-10 h-10 rounded-xl object-cover"
+          />
+          <div>
+            <h1 class="text-lg font-heading text-white">Anyel Jimmy</h1>
+            <p class="text-xs text-white/80 -mt-0.5">
+              Kos Strategis & Terjangkau
+            </p>
+          </div>
+        </a>
+
+        <button
+          id="menu-btn"
+          class="md:hidden focus:outline-none"
+          aria-label="Toggle menu"
+        >
+          <svg
+            class="hamburger"
+            viewBox="0 0 100 100"
+            xmlns="http://www.w3.org/2000/svg"
+            role="img"
+            aria-hidden="true"
+          >
+            <path class="line top" d="M 20,35 H 80" />
+            <path class="line middle" d="M 20,50 H 80" />
+            <path class="line bottom" d="M 20,65 H 80" />
+          </svg>
+        </button>
+
+        <nav
+          id="menu"
+          class="hidden flex-col absolute top-full left-0 w-full bg-moss/95 text-white/90 text-sm font-semibold space-y-4 px-6 py-4 rounded-b-xl shadow-lg"
+        >
+          <a href="#fasilitas" class="hover:text-white block">Fasilitas</a>
+          <a href="#galeri" class="hover:text-white block">Galeri</a>
+          <a href="#lokasi" class="hover:text-white block">Lokasi</a>
+          <a href="#kontak" class="hover:text-white block">Kontak</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section
+      class="relative py-28 bg-gradient-to-b from-moss/95 via-mosslight/95 to-moss/90 text-white text-center overflow-hidden"
+    >
+      <div class="relative max-w-5xl mx-auto px-6 space-y-8" data-aos="fade-up">
+        <p
+          class="inline-block bg-white/20 text-white font-semibold px-4 py-1.5 rounded-full text-xs uppercase tracking-widest"
+        >
+          Kos Modern Maumere
+        </p>
+
+        <h1
+          class="text-4xl md:text-5xl font-heading font-bold leading-tight drop-shadow-sm"
+        >
+          Hunian Nyaman, Strategis,<br class="hidden md:block" />
+          dan Siap Huni
+        </h1>
+
+        <p class="text-white/90 text-lg max-w-2xl mx-auto leading-relaxed">
+          Kos Anyel Jimmy hadir untuk mahasiswa dan pekerja muda yang
+          mengutamakan kenyamanan, keamanan, dan akses mudah ke kampus serta
+          pusat kota.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+          <a
+            href="#fasilitas"
+            class="bg-white text-moss px-8 py-4 rounded-xl font-semibold shadow-lg hover:bg-mustard hover:text-cocoa transition"
+          >
+            <i class="fa-solid fa-star mr-2"></i> Lihat Fasilitas
+          </a>
+          <a
+            href="#galeri"
+            class="border-2 border-white text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/10 transition"
+          >
+            <i class="fa-solid fa-images mr-2"></i> Lihat Galeri
+          </a>
+        </div>
+
+        <div class="mt-10 grid grid-cols-2 md:grid-cols-4 gap-6 text-white/90">
+          <div>
+            <div
+              class="text-3xl font-bold flex items-center justify-center gap-2"
+            >
+              <i class="fa-solid fa-door-open"></i>
+              <span id="kamar-count">...</span>
+            </div>
+            <div class="text-sm">Kamar Siap Huni</div>
+          </div>
+          <div>
+            <div
+              class="text-3xl font-bold flex items-center justify-center gap-2"
+            >
+              <i class="fa-solid fa-clock"></i> 5 Menit
+            </div>
+            <div class="text-sm">Ke Kampus Nusa Nipa</div>
+          </div>
+          <div>
+            <div
+              class="text-3xl font-bold flex items-center justify-center gap-2"
+            >
+              <i class="fa-solid fa-lock"></i> 24 Jam
+            </div>
+            <div class="text-sm">Akses & Keamanan</div>
+          </div>
+          <div>
+            <div
+              class="text-3xl font-bold flex items-center justify-center gap-2"
+            >
+              <i class="fa-solid fa-wallet"></i>
+              <span id="harga-bulan">...</span>
+            </div>
+            <div class="text-sm">Mulai per Bulan</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FASILITAS -->
+    <section id="fasilitas" class="py-20">
+      <div class="max-w-6xl mx-auto px-6 text-center">
+        <h3 class="text-2xl font-heading text-moss mb-10" data-aos="fade-down">
+          Fasilitas Utama
+        </h3>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div
+            class="p-6 rounded-xl bg-white card-shadow hover:scale-105 transition-transform"
+            data-aos="zoom-in"
+          >
+            <div
+              class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-moss/10 text-moss text-2xl mb-3"
+            >
+              <i class="fa-solid fa-bed"></i>
+            </div>
+            <div class="font-semibold text-moss">Kamar Full Furnished</div>
+            <div class="text-sm text-gray-600">Kasur, Lemari, Meja, Kipas</div>
+          </div>
+
+          <div
+            class="p-6 rounded-xl bg-white card-shadow hover:scale-105 transition-transform"
+            data-aos="zoom-in"
+            data-aos-delay="100"
+          >
+            <div
+              class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-moss/10 text-moss text-2xl mb-3"
+            >
+              <i class="fa-solid fa-bolt"></i>
+            </div>
+            <div class="font-semibold text-moss">Listrik Token Pribadi</div>
+            <div class="text-sm text-gray-600">Meteran di tiap kamar</div>
+          </div>
+
+          <div
+            class="p-6 rounded-xl bg-white card-shadow hover:scale-105 transition-transform"
+            data-aos="zoom-in"
+            data-aos-delay="200"
+          >
+            <div
+              class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-moss/10 text-moss text-2xl mb-3"
+            >
+              <i class="fa-solid fa-utensils"></i>
+            </div>
+            <div class="font-semibold text-moss">Dapur Bersih</div>
+            <div class="text-sm text-gray-600">Fasilitas lengkap & nyaman</div>
+          </div>
+
+          <div
+            class="p-6 rounded-xl bg-white card-shadow hover:scale-105 transition-transform"
+            data-aos="zoom-in"
+            data-aos-delay="300"
+          >
+            <div
+              class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-moss/10 text-moss text-2xl mb-3"
+            >
+              <i class="fa-solid fa-car"></i>
+            </div>
+            <div class="font-semibold text-moss">Parkir Aman</div>
+            <div class="text-sm text-gray-600">Motor & mobil tersedia</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALERI -->
+    <section id="galeri" class="py-20 bg-cocoa-50">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 text-center">
+        <h3 class="text-2xl font-heading text-moss mb-4" data-aos="fade-down">
+          Galeri Kos
+        </h3>
+        <p
+          class="text-gray-600 mb-10 max-w-2xl mx-auto text-sm sm:text-base"
+          data-aos="fade-up"
+        >
+          Lihat suasana kamar, dapur, dan lingkungan sekitar Kos Anyel Jimmy.
+        </p>
+
+        <div
+          id="galeri-grid"
+          class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-6 justify-items-center p-2 sm:p-4"
+        ></div>
+      </div>
+
+      <script>
+        function openLightbox(img) {
+          const modal = document.createElement("div");
+          modal.className =
+            "fixed inset-0 bg-black/95 flex items-center justify-center z-50 p-4";
+          modal.innerHTML = `
+        <img src="${img.src}" alt="${img.alt}"
+          class="max-h-[85vh] w-auto rounded-xl shadow-xl border border-white/20 transition-all duration-300 ease-in-out">
+      `;
+          modal.onclick = () => modal.remove();
+          document.body.appendChild(modal);
+        }
+      </script>
+    </section>
+
+    <!-- LOKASI -->
+    <section id="lokasi" class="py-20">
+      <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-8 items-start">
+        <div data-aos="fade-right">
+          <h3 class="text-2xl font-heading text-moss mb-4">Lokasi Strategis</h3>
+          <p class="text-gray-600 mb-4">
+            Dekat kampus, pusat perbelanjaan, dan transportasi umum. Area aman
+            dan mudah dijangkau.
+          </p>
+          <ul class="text-sm text-gray-600 space-y-2 mb-4">
+            <li>• 10 menit ke Universitas Nusa Nipa Maumere</li>
+            <li>• 5 menit ke Alfamart</li>
+            <li>• Akses transportasi mudah</li>
+          </ul>
+          <a
+            href="https://maps.google.com?q=-8.634352,122.218301"
+            target="_blank"
+            class="text-moss underline font-semibold"
+            >Lihat di Google Maps</a
+          >
+        </div>
+        <div data-aos="fade-left">
+          <div class="w-full h-64 rounded-xl overflow-hidden shadow-lg">
+            <iframe
+              class="w-full h-full"
+              frameborder="0"
+              src="https://www.google.com/maps?q=-8.634352,122.218301&z=16&t=k&hl=id&output=embed"
+              allowfullscreen
+              loading="lazy"
+            ></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="bg-mosslight text-white text-center py-8" id="kontak">
+      <h3 class="text-xl font-heading mb-2">Tertarik melihat langsung?</h3>
+      <a
+        href=""
+        target="_blank"
+        class="wa-link bg-white text-moss font-semibold px-6 py-3 rounded-xl shadow hover:bg-gray-100 transition"
+        >Hubungi Kami Sekarang</a
+      >
+    </section>
+
+    <!-- FOOTER -->
+    <footer
+      class="bg-gradient-to-r from-moss to-mosslight text-white pt-8 pb-4"
+    >
+      <div class="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-3 gap-6">
+        <div class="col-span-2 md:col-span-1 space-y-1">
+          <h5 class="font-heading text-lg mb-1">Kos Anyel Jimmy</h5>
+          <p class="text-sm leading-snug">
+            Jl. Garuda, RT 027 RW 005<br />
+            Kel. Kota Baru, Kec. Alok Timur, Kab. Sikka<br />
+            <span class="font-semibold">Telp:</span> <span id="telp"></span>
+          </p>
+        </div>
+
+        <div class="space-y-1">
+          <h5 class="font-heading text-lg mb-1">Navigasi</h5>
+          <ul class="text-sm space-y-1">
+            <li><a href="#fasilitas" class="hover:underline">Fasilitas</a></li>
+            <li><a href="#galeri" class="hover:underline">Galeri</a></li>
+            <li><a href="#lokasi" class="hover:underline">Lokasi</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h5 class="font-heading text-lg mb-1">Hubungi Kami</h5>
+          <div class="flex gap-4 mt-2">
+            <a href="" target="_blank" class="ig-link hover:text-pink-400">
+              <i class="fab fa-instagram text-lg"></i>
+            </a>
+            <a href="" target="_blank" class="wa-link hover:text-green-400">
+              <i class="fab fa-whatsapp text-lg"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="border-t border-white/20 mt-4 pt-3 text-center text-xs text-white/70"
+      >
+        © <span id="year"></span> Kos Anyel Jimmy. Dikembangkan oleh
+        <span class="font-semibold">Arnold Jimmy</span>
+      </div>
+    </footer>
+
+    <!-- SCRIPT -->
+    <script>
+      const SHEET_URL =
+        "https://script.google.com/macros/s/AKfycbwqZv6IMH-Hv_mh0Fqcjv8Z4aYE1khlYdFhEQBgDPwJjGdhmv18b8kSwCGopsgJfFI6/exec";
+
+      window.addEventListener("DOMContentLoaded", () => {
+        AOS.init({ duration: 1000, once: true });
+
+        const yearEl = document.getElementById("year");
+        if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+        const menuBtn = document.getElementById("menu-btn");
+        const menu = document.getElementById("menu");
+        if (menuBtn && menu) {
+          menuBtn.addEventListener("click", () => {
+            menu.classList.toggle("show");
+            menu.classList.toggle("hidden");
+            menuBtn.querySelector(".hamburger").classList.toggle("active");
+          });
+        }
+
+        const loader = document.getElementById("loader");
+
+        fetch(SHEET_URL)
+          .then((res) => res.json())
+          .then((rows) => {
+            if (!rows.length) return;
+            const data = rows[0];
+
+            const kamarEl = document.getElementById("kamar-count");
+            const hargaEl = document.getElementById("harga-bulan");
+            if (kamarEl) kamarEl.textContent = data.kamar || "";
+            if (hargaEl) hargaEl.textContent = data.harga || "";
+
+            if (data.kontak) {
+              document
+                .querySelectorAll(".wa-link")
+                .forEach((a) => (a.href = `https://wa.me/${data.kontak}`));
+              const telp = document.getElementById("telp");
+              if (telp) telp.textContent = data.kontak;
+            }
+
+            if (data.instagram) {
+              document
+                .querySelectorAll(".ig-link")
+                .forEach(
+                  (a) => (a.href = `https://instagram.com/${data.instagram}`)
+                );
+            }
+
+            const galeri = document.getElementById("galeri-grid");
+            if (galeri) {
+              galeri.innerHTML = "";
+              const gambarKeys = [
+                "gambar1",
+                "gambar2",
+                "gambar3",
+                "gambar4",
+                "gambar5",
+              ];
+
+              gambarKeys.forEach((key, i) => {
+                if (data[key]) {
+                  const div = document.createElement("div");
+                  div.className = "relative group w-full flex justify-center";
+                  div.setAttribute("data-aos", "zoom-in");
+                  div.setAttribute("data-aos-delay", `${i * 100}`);
+
+                  div.innerHTML = `
+                    <img 
+                      src="${data[key]}" 
+                      alt="Foto Kos ${i + 1}" 
+                      loading="lazy"
+                      class="rounded-xl card-shadow img-hover w-[95%] md:w-[80%] h-auto object-cover cursor-pointer"
+                      style="display:block; max-width:350px;"
+                      onclick="openLightbox(this)">
+                  `;
+                  galeri.appendChild(div);
+                }
+              });
+
+              setTimeout(() => AOS.refresh(), 500);
+            }
+          })
+          .catch((err) =>
+            console.error("❌ Gagal memuat data dari Apps Script:", err)
+          )
+          .finally(() => {
+            setTimeout(() => {
+              loader.classList.add("fade-out");
+            }, 800);
+          });
+      });
+    </script>
+  </body>
+</html>
