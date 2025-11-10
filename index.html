@@ -2,7 +2,10 @@
 <html lang="id">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes"
+    />
     <title>Kos Anyel Jimmy — Hunian Strategis & Terjangkau</title>
     <link
       rel="icon"
@@ -17,6 +20,46 @@
     <meta
       name="keywords"
       content="kos maumere, kos murah, kos strategis, kos mahasiswa, kost maumere"
+    />
+
+    <!-- Schema Markup untuk SEO -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LodgingBusiness",
+        "name": "Kos Anyel Jimmy",
+        "description": "Kos Anyel Jimmy — Hunian strategis dan nyaman di Maumere",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Jl. Garuda, RT 027 RW 005",
+          "addressLocality": "Maumere",
+          "addressRegion": "NTT",
+          "postalCode": "86111"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": "-8.634352",
+          "longitude": "122.218301"
+        },
+        "url": "https://yourwebsite.com",
+        "telephone": "+62-XXX-XXXX-XXXX",
+        "priceRange": "Rp700.000 - Rp1.200.000",
+        "amenityFeature": [
+          "Full furnished rooms",
+          "Private electricity meter",
+          "Clean kitchen",
+          "Secure parking"
+        ]
+      }
+    </script>
+
+    <!-- Optimasi Loading & Performa -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      as="image"
+      href="https://raw.githubusercontent.com/arnoldusxyz/AJ/d46d3644af86edf76f6f40efd90a6606f6682125/logo_kedua.png"
     />
 
     <!-- Google Fonts -->
@@ -69,15 +112,75 @@
         overflow-x: hidden;
       }
 
+      /* Custom Scrollbar Styling */
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: linear-gradient(to bottom, #2f7a4c, #4fa86c);
+        border-radius: 10px;
+        border: 2px solid #f1f1f1;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(to bottom, #4fa86c, #2f7a4c);
+      }
+
+      /* Firefox Scrollbar */
+      html {
+        scrollbar-width: thin;
+        scrollbar-color: #2f7a4c #f1f1f1;
+      }
+
+      /* Improved card styling with gradient border */
       .card-shadow {
         box-shadow: 0 10px 25px rgba(47, 122, 76, 0.15);
+        background: white;
+        border-radius: 12px;
+        position: relative;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       }
+
+      .card-shadow::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 12px;
+        padding: 2px;
+        background: linear-gradient(135deg, #2f7a4c, #4fa86c);
+        -webkit-mask: linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+      }
+
+      .card-shadow:hover::before,
+      .card-shadow:active::before {
+        opacity: 1;
+      }
+
+      .card-shadow:hover,
+      .card-shadow:active {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(47, 122, 76, 0.25);
+      }
+
       .img-hover {
-        transition: transform 0.5s ease, opacity 0.3s ease;
+        transition: transform 0.5s ease, opacity 0.3s ease, box-shadow 0.3s ease;
       }
-      .img-hover:hover {
+      .img-hover:hover,
+      .img-hover:active {
         transform: scale(1.05);
         opacity: 0.9;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
       }
 
       .hamburger {
@@ -187,10 +290,268 @@
           opacity: 0.5;
         }
       }
+
+      /* Section transition effects */
+      section {
+        position: relative;
+        transition: all 0.6s ease;
+      }
+
+      .section-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          135deg,
+          rgba(47, 122, 76, 0.03) 0%,
+          rgba(79, 168, 108, 0.03) 100%
+        );
+        z-index: -1;
+        opacity: 0;
+        transition: opacity 0.8s ease;
+      }
+
+      section.active .section-bg {
+        opacity: 1;
+      }
+
+      /* Floating elements */
+      .floating {
+        animation: floating 6s ease-in-out infinite;
+      }
+
+      @keyframes floating {
+        0% {
+          transform: translate(0, 0px);
+        }
+        50% {
+          transform: translate(0, -15px);
+        }
+        100% {
+          transform: translate(0, 0px);
+        }
+      }
+
+      /* Scroll progress indicator */
+      .scroll-progress {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 0%;
+        height: 4px;
+        background: linear-gradient(to right, #2f7a4c, #4fa86c, #f6c84c);
+        z-index: 9998;
+        transition: width 0.3s ease;
+      }
+
+      /* Improved button styling */
+      .btn-primary {
+        background: linear-gradient(135deg, #2f7a4c, #4fa86c);
+        color: white;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn-primary::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: left 0.5s;
+      }
+
+      .btn-primary:hover::before,
+      .btn-primary:active::before {
+        left: 100%;
+      }
+
+      .btn-primary:hover,
+      .btn-primary:active {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(47, 122, 76, 0.3);
+      }
+
+      /* Enhanced hero section */
+      .hero-pattern {
+        background-image: radial-gradient(
+            circle at 25% 25%,
+            rgba(255, 255, 255, 0.1) 0%,
+            transparent 55%
+          ),
+          radial-gradient(
+            circle at 75% 75%,
+            rgba(255, 255, 255, 0.1) 0%,
+            transparent 55%
+          );
+      }
+
+      /* Improved navigation */
+      header {
+        transition: all 0.4s ease;
+      }
+
+      header.scrolled {
+        background: rgba(47, 122, 76, 0.98);
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Enhanced footer */
+      footer {
+        background: linear-gradient(135deg, #2f7a4c 0%, #4fa86c 100%);
+      }
+
+      /* Floating WhatsApp Button */
+      .floating-wa {
+        position: fixed;
+        bottom: 6rem;
+        right: 1.5rem;
+        z-index: 40;
+        background: #25d366;
+        color: white;
+        width: 3.5rem;
+        height: 3.5rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+        transition: all 0.3s ease;
+        animation: pulse-wa 2s infinite;
+      }
+
+      .floating-wa:hover,
+      .floating-wa:active {
+        transform: scale(1.1);
+        box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6);
+      }
+
+      @keyframes pulse-wa {
+        0% {
+          box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+        }
+        50% {
+          box-shadow: 0 4px 25px rgba(37, 211, 102, 0.8);
+        }
+        100% {
+          box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+        }
+      }
+
+      /* Back to Top Button */
+      .back-to-top {
+        position: fixed;
+        bottom: 1.5rem;
+        right: 1.5rem;
+        z-index: 40;
+        background: #2f7a4c;
+        color: white;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 15px rgba(47, 122, 76, 0.4);
+        transition: all 0.3s ease;
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      .back-to-top.visible {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .back-to-top:hover,
+      .back-to-top:active {
+        background: #4fa86c;
+        transform: translateY(-3px);
+      }
+
+      /* Mobile optimization */
+      @media (max-width: 768px) {
+        .floating-wa,
+        .back-to-top {
+          width: 3rem;
+          height: 3rem;
+        }
+
+        .floating-wa {
+          bottom: 5rem;
+        }
+
+        /* Ensure buttons are tappable on mobile */
+        .btn-primary,
+        .wa-link,
+        .ig-link,
+        .floating-wa,
+        .back-to-top {
+          min-height: 44px;
+          min-width: 44px;
+        }
+
+        /* Hide custom scrollbar on mobile for better UX */
+        ::-webkit-scrollbar {
+          width: 6px;
+        }
+      }
+
+      /* Hover effects for navigation */
+      #menu a {
+        transition: all 0.3s ease;
+      }
+
+      #menu a:hover,
+      #menu a:active {
+        transform: translateX(2px);
+        color: white;
+      }
+
+      /* Hover effects for social links */
+      .ig-link,
+      .wa-link {
+        transition: all 0.3s ease;
+      }
+
+      .ig-link:hover,
+      .ig-link:active {
+        transform: translateY(-1px);
+        color: rgba(236, 72, 153, 1) !important;
+      }
+
+      .wa-link:hover,
+      .wa-link:active {
+        transform: translateY(-1px);
+        color: rgba(34, 197, 94, 1) !important;
+      }
+
+      /* Hover effects for gallery images */
+      .gallery-item {
+        transition: all 0.3s ease;
+      }
+
+      .gallery-item:hover,
+      .gallery-item:active {
+        transform: scale(1.02);
+      }
     </style>
   </head>
 
   <body class="font-body text-gray-800 antialiased leading-relaxed">
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-progress" id="scroll-progress"></div>
+
     <!-- === LOADER === -->
     <div id="loader">
       <img
@@ -201,12 +562,24 @@
       <p class="loader-text">Memuat data kos...</p>
     </div>
 
+    <!-- Floating WhatsApp Button -->
+    <a href="" class="floating-wa wa-link" aria-label="Hubungi via WhatsApp">
+      <i class="fab fa-whatsapp text-2xl"></i>
+    </a>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="back-to-top" aria-label="Kembali ke atas">
+      <i class="fas fa-chevron-up"></i>
+    </button>
+
     <!-- HEADER -->
-    <header class="bg-moss/90 backdrop-blur sticky top-0 z-40 shadow-sm">
+    <header
+      class="bg-moss/90 backdrop-blur sticky top-0 z-40 shadow-sm transition-all duration-400"
+    >
       <div
         class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between"
       >
-        <a href="#" class="flex items-center gap-3">
+        <a href="#" class="flex items-center gap-3 floating">
           <img
             src="https://raw.githubusercontent.com/arnoldusxyz/AJ/d46d3644af86edf76f6f40efd90a6606f6682125/logo_kedua.png"
             alt="Logo AJ"
@@ -242,21 +615,39 @@
           id="menu"
           class="hidden flex-col absolute top-full left-0 w-full bg-moss/95 text-white/90 text-sm font-semibold space-y-4 px-6 py-4 rounded-b-xl shadow-lg"
         >
-          <a href="#fasilitas" class="hover:text-white block">Fasilitas</a>
-          <a href="#galeri" class="hover:text-white block">Galeri</a>
-          <a href="#lokasi" class="hover:text-white block">Lokasi</a>
-          <a href="#kontak" class="hover:text-white block">Kontak</a>
+          <a
+            href="#fasilitas"
+            class="hover:text-white block transition-all duration-300"
+            >Fasilitas</a
+          >
+          <a
+            href="#galeri"
+            class="hover:text-white block transition-all duration-300"
+            >Galeri</a
+          >
+          <a
+            href="#lokasi"
+            class="hover:text-white block transition-all duration-300"
+            >Lokasi</a
+          >
+          <a
+            href="#kontak"
+            class="hover:text-white block transition-all duration-300"
+            >Kontak</a
+          >
         </nav>
       </div>
     </header>
 
     <!-- HERO -->
     <section
-      class="relative py-28 bg-gradient-to-b from-moss/95 via-mosslight/95 to-moss/90 text-white text-center overflow-hidden"
+      class="relative py-28 bg-gradient-to-b from-moss/95 via-mosslight/95 to-moss/90 text-white text-center overflow-hidden hero-pattern"
+      id="hero"
     >
+      <div class="section-bg"></div>
       <div class="relative max-w-5xl mx-auto px-6 space-y-8" data-aos="fade-up">
         <p
-          class="inline-block bg-white/20 text-white font-semibold px-4 py-1.5 rounded-full text-xs uppercase tracking-widest"
+          class="inline-block bg-white/20 text-white font-semibold px-4 py-1.5 rounded-full text-xs uppercase tracking-widest floating"
         >
           Kos Modern Maumere
         </p>
@@ -277,20 +668,20 @@
         <div class="flex flex-col sm:flex-row gap-4 justify-center pt-4">
           <a
             href="#fasilitas"
-            class="bg-white text-moss px-8 py-4 rounded-xl font-semibold shadow-lg hover:bg-mustard hover:text-cocoa transition"
+            class="btn-primary px-8 py-4 rounded-xl font-semibold shadow-lg"
           >
             <i class="fa-solid fa-star mr-2"></i> Lihat Fasilitas
           </a>
           <a
             href="#galeri"
-            class="border-2 border-white text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/10 transition"
+            class="border-2 border-white text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/10 transition-all duration-300"
           >
             <i class="fa-solid fa-images mr-2"></i> Lihat Galeri
           </a>
         </div>
 
         <div class="mt-10 grid grid-cols-2 md:grid-cols-4 gap-6 text-white/90">
-          <div>
+          <div class="floating" style="animation-delay: 0s">
             <div
               class="text-3xl font-bold flex items-center justify-center gap-2"
             >
@@ -299,7 +690,7 @@
             </div>
             <div class="text-sm">Kamar Siap Huni</div>
           </div>
-          <div>
+          <div class="floating" style="animation-delay: 0.2s">
             <div
               class="text-3xl font-bold flex items-center justify-center gap-2"
             >
@@ -307,7 +698,7 @@
             </div>
             <div class="text-sm">Ke Kampus Nusa Nipa</div>
           </div>
-          <div>
+          <div class="floating" style="animation-delay: 0.4s">
             <div
               class="text-3xl font-bold flex items-center justify-center gap-2"
             >
@@ -315,7 +706,7 @@
             </div>
             <div class="text-sm">Akses & Keamanan</div>
           </div>
-          <div>
+          <div class="floating" style="animation-delay: 0.6s">
             <div
               class="text-3xl font-bold flex items-center justify-center gap-2"
             >
@@ -329,14 +720,15 @@
     </section>
 
     <!-- FASILITAS -->
-    <section id="fasilitas" class="py-20">
+    <section id="fasilitas" class="py-20 relative">
+      <div class="section-bg"></div>
       <div class="max-w-6xl mx-auto px-6 text-center">
         <h3 class="text-2xl font-heading text-moss mb-10" data-aos="fade-down">
           Fasilitas Utama
         </h3>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
           <div
-            class="p-6 rounded-xl bg-white card-shadow hover:scale-105 transition-transform"
+            class="p-6 rounded-xl card-shadow gallery-item"
             data-aos="zoom-in"
           >
             <div
@@ -349,7 +741,7 @@
           </div>
 
           <div
-            class="p-6 rounded-xl bg-white card-shadow hover:scale-105 transition-transform"
+            class="p-6 rounded-xl card-shadow gallery-item"
             data-aos="zoom-in"
             data-aos-delay="100"
           >
@@ -363,7 +755,7 @@
           </div>
 
           <div
-            class="p-6 rounded-xl bg-white card-shadow hover:scale-105 transition-transform"
+            class="p-6 rounded-xl card-shadow gallery-item"
             data-aos="zoom-in"
             data-aos-delay="200"
           >
@@ -377,7 +769,7 @@
           </div>
 
           <div
-            class="p-6 rounded-xl bg-white card-shadow hover:scale-105 transition-transform"
+            class="p-6 rounded-xl card-shadow gallery-item"
             data-aos="zoom-in"
             data-aos-delay="300"
           >
@@ -394,7 +786,8 @@
     </section>
 
     <!-- GALERI -->
-    <section id="galeri" class="py-20 bg-cocoa-50">
+    <section id="galeri" class="py-20 bg-cocoa-50 relative">
+      <div class="section-bg"></div>
       <div class="max-w-6xl mx-auto px-4 sm:px-6 text-center">
         <h3 class="text-2xl font-heading text-moss mb-4" data-aos="fade-down">
           Galeri Kos
@@ -428,7 +821,8 @@
     </section>
 
     <!-- LOKASI -->
-    <section id="lokasi" class="py-20">
+    <section id="lokasi" class="py-20 relative">
+      <div class="section-bg"></div>
       <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-8 items-start">
         <div data-aos="fade-right">
           <h3 class="text-2xl font-heading text-moss mb-4">Lokasi Strategis</h3>
@@ -437,19 +831,32 @@
             dan mudah dijangkau.
           </p>
           <ul class="text-sm text-gray-600 space-y-2 mb-4">
-            <li>• 10 menit ke Universitas Nusa Nipa Maumere</li>
-            <li>• 5 menit ke Alfamart</li>
-            <li>• Akses transportasi mudah</li>
+            <li class="flex items-center">
+              <i class="fa-solid fa-check text-moss mr-2"></i> 10 menit ke
+              Universitas Nusa Nipa Maumere
+            </li>
+            <li class="flex items-center">
+              <i class="fa-solid fa-check text-moss mr-2"></i> 5 menit ke
+              Alfamart
+            </li>
+            <li class="flex items-center">
+              <i class="fa-solid fa-check text-moss mr-2"></i> Akses
+              transportasi mudah
+            </li>
           </ul>
           <a
             href="https://maps.google.com?q=-8.634352,122.218301"
             target="_blank"
-            class="text-moss underline font-semibold"
-            >Lihat di Google Maps</a
+            class="btn-primary px-6 py-3 rounded-xl font-semibold inline-flex items-center"
           >
+            <i class="fa-solid fa-map-location-dot mr-2"></i> Lihat di Google
+            Maps
+          </a>
         </div>
         <div data-aos="fade-left">
-          <div class="w-full h-64 rounded-xl overflow-hidden shadow-lg">
+          <div
+            class="w-full h-64 rounded-xl overflow-hidden shadow-lg card-shadow gallery-item"
+          >
             <iframe
               class="w-full h-full"
               frameborder="0"
@@ -463,54 +870,90 @@
     </section>
 
     <!-- CTA -->
-    <section class="bg-mosslight text-white text-center py-8" id="kontak">
+    <section
+      class="bg-mosslight text-white text-center py-8 relative"
+      id="kontak"
+    >
+      <div class="section-bg"></div>
       <h3 class="text-xl font-heading mb-2">Tertarik melihat langsung?</h3>
       <a
         href=""
         target="_blank"
-        class="wa-link bg-white text-moss font-semibold px-6 py-3 rounded-xl shadow hover:bg-gray-100 transition"
-        >Hubungi Kami Sekarang</a
+        class="wa-link bg-white text-moss font-semibold px-6 py-3 rounded-xl shadow hover:bg-gray-100 transition-all duration-300 inline-flex items-center"
       >
+        <i class="fa-brands fa-whatsapp mr-2 text-lg"></i> Hubungi Kami Sekarang
+      </a>
     </section>
 
     <!-- FOOTER -->
     <footer
-      class="bg-gradient-to-r from-moss to-mosslight text-white pt-8 pb-4"
+      class="bg-gradient-to-r from-moss to-mosslight text-white pt-8 pb-4 relative"
     >
-      <div class="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-3 gap-6">
-        <div class="col-span-2 md:col-span-1 space-y-1">
-          <h5 class="font-heading text-lg mb-1">Kos Anyel Jimmy</h5>
-          <p class="text-sm leading-snug">
+      <div
+        class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8"
+      >
+        <!-- Bagian Info Kos -->
+        <div class="space-y-2">
+          <h5 class="font-heading text-lg mb-2">Kos Anyel Jimmy</h5>
+          <p class="text-sm leading-relaxed">
             Jl. Garuda, RT 027 RW 005<br />
             Kel. Kota Baru, Kec. Alok Timur, Kab. Sikka<br />
             <span class="font-semibold">Telp:</span> <span id="telp"></span>
           </p>
         </div>
 
-        <div class="space-y-1">
-          <h5 class="font-heading text-lg mb-1">Navigasi</h5>
-          <ul class="text-sm space-y-1">
-            <li><a href="#fasilitas" class="hover:underline">Fasilitas</a></li>
-            <li><a href="#galeri" class="hover:underline">Galeri</a></li>
-            <li><a href="#lokasi" class="hover:underline">Lokasi</a></li>
+        <!-- Bagian Navigasi -->
+        <div class="space-y-2">
+          <h5 class="font-heading text-lg mb-2">Navigasi</h5>
+          <ul class="text-sm space-y-2">
+            <li>
+              <a
+                href="#fasilitas"
+                class="hover:underline transition-all duration-300 block"
+                >Fasilitas</a
+              >
+            </li>
+            <li>
+              <a
+                href="#galeri"
+                class="hover:underline transition-all duration-300 block"
+                >Galeri</a
+              >
+            </li>
+            <li>
+              <a
+                href="#lokasi"
+                class="hover:underline transition-all duration-300 block"
+                >Lokasi</a
+              >
+            </li>
           </ul>
         </div>
 
-        <div>
-          <h5 class="font-heading text-lg mb-1">Hubungi Kami</h5>
-          <div class="flex gap-4 mt-2">
-            <a href="" target="_blank" class="ig-link hover:text-pink-400">
-              <i class="fab fa-instagram text-lg"></i>
+        <!-- Bagian Hubungi Kami -->
+        <div class="space-y-2">
+          <h5 class="font-heading text-lg mb-2">Hubungi Kami</h5>
+          <div class="flex gap-4">
+            <a
+              href=""
+              target="_blank"
+              class="ig-link hover:text-pink-400 transition-all duration-300 inline-flex items-center justify-center w-10 h-10"
+            >
+              <i class="fab fa-instagram text-xl"></i>
             </a>
-            <a href="" target="_blank" class="wa-link hover:text-green-400">
-              <i class="fab fa-whatsapp text-lg"></i>
+            <a
+              href=""
+              target="_blank"
+              class="wa-link hover:text-green-400 transition-all duration-300 inline-flex items-center justify-center w-10 h-10"
+            >
+              <i class="fab fa-whatsapp text-xl"></i>
             </a>
           </div>
         </div>
       </div>
 
       <div
-        class="border-t border-white/20 mt-4 pt-3 text-center text-xs text-white/70"
+        class="border-t border-white/20 mt-6 pt-4 text-center text-xs text-white/70"
       >
         © <span id="year"></span> Kos Anyel Jimmy. Dikembangkan oleh
         <span class="font-semibold">Arnold Jimmy</span>
@@ -522,8 +965,89 @@
       const SHEET_URL =
         "https://script.google.com/macros/s/AKfycbwqZv6IMH-Hv_mh0Fqcjv8Z4aYE1khlYdFhEQBgDPwJjGdhmv18b8kSwCGopsgJfFI6/exec";
 
+      // Animated Counter for Statistics
+      function animateCounter(element, target, duration = 2000) {
+        let start = 0;
+        const increment = target / (duration / 16);
+        const timer = setInterval(() => {
+          start += increment;
+          if (start >= target) {
+            element.textContent = target;
+            clearInterval(timer);
+          } else {
+            element.textContent = Math.floor(start);
+          }
+        }, 16);
+      }
+
+      // Section observer for active state
+      const sectionObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("active");
+            } else {
+              entry.target.classList.remove("active");
+            }
+          });
+        },
+        { threshold: 0.3 }
+      );
+
+      // Scroll progress indicator
+      function updateScrollProgress() {
+        const winScroll =
+          document.body.scrollTop || document.documentElement.scrollTop;
+        const height =
+          document.documentElement.scrollHeight -
+          document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        document.getElementById("scroll-progress").style.width = scrolled + "%";
+      }
+
+      // Header scroll effect
+      function updateHeaderOnScroll() {
+        const header = document.querySelector("header");
+        if (window.scrollY > 50) {
+          header.classList.add("scrolled");
+        } else {
+          header.classList.remove("scrolled");
+        }
+      }
+
+      // Back to Top functionality
+      function updateBackToTopButton() {
+        const backToTopButton = document.getElementById("back-to-top");
+        if (window.pageYOffset > 300) {
+          backToTopButton.classList.add("visible");
+        } else {
+          backToTopButton.classList.remove("visible");
+        }
+      }
+
+      window.addEventListener("scroll", () => {
+        updateScrollProgress();
+        updateHeaderOnScroll();
+        updateBackToTopButton();
+      });
+
       window.addEventListener("DOMContentLoaded", () => {
         AOS.init({ duration: 1000, once: true });
+
+        // Observe all sections
+        document.querySelectorAll("section").forEach((section) => {
+          sectionObserver.observe(section);
+        });
+
+        // Back to Top button event listener
+        document
+          .getElementById("back-to-top")
+          .addEventListener("click", function () {
+            window.scrollTo({
+              top: 0,
+              behavior: "smooth",
+            });
+          });
 
         const yearEl = document.getElementById("year");
         if (yearEl) yearEl.textContent = new Date().getFullYear();
@@ -540,16 +1064,33 @@
 
         const loader = document.getElementById("loader");
 
+        // Improved error handling for data loading
         fetch(SHEET_URL)
-          .then((res) => res.json())
+          .then((res) => {
+            if (!res.ok) throw new Error("Network response was not ok");
+            return res.json();
+          })
           .then((rows) => {
-            if (!rows.length) return;
+            if (!rows.length) {
+              throw new Error("No data received");
+            }
             const data = rows[0];
 
             const kamarEl = document.getElementById("kamar-count");
             const hargaEl = document.getElementById("harga-bulan");
-            if (kamarEl) kamarEl.textContent = data.kamar || "";
-            if (hargaEl) hargaEl.textContent = data.harga || "";
+
+            // Use animated counter if data exists
+            if (kamarEl && data.kamar) {
+              animateCounter(kamarEl, parseInt(data.kamar));
+            } else if (kamarEl) {
+              kamarEl.textContent = "10+";
+            }
+
+            if (hargaEl && data.harga) {
+              hargaEl.textContent = data.harga;
+            } else if (hargaEl) {
+              hargaEl.textContent = "Rp700rb";
+            }
 
             if (data.kontak) {
               document
@@ -557,6 +1098,13 @@
                 .forEach((a) => (a.href = `https://wa.me/${data.kontak}`));
               const telp = document.getElementById("telp");
               if (telp) telp.textContent = data.kontak;
+            } else {
+              // Fallback for contact
+              document
+                .querySelectorAll(".wa-link")
+                .forEach((a) => (a.href = `https://wa.me/6281234567890`));
+              const telp = document.getElementById("telp");
+              if (telp) telp.textContent = "0812-3456-7890";
             }
 
             if (data.instagram) {
@@ -564,6 +1112,13 @@
                 .querySelectorAll(".ig-link")
                 .forEach(
                   (a) => (a.href = `https://instagram.com/${data.instagram}`)
+                );
+            } else {
+              // Fallback for Instagram
+              document
+                .querySelectorAll(".ig-link")
+                .forEach(
+                  (a) => (a.href = `https://instagram.com/kosanyeljimmy`)
                 );
             }
 
@@ -581,7 +1136,8 @@
               gambarKeys.forEach((key, i) => {
                 if (data[key]) {
                   const div = document.createElement("div");
-                  div.className = "relative group w-full flex justify-center";
+                  div.className =
+                    "relative group w-full flex justify-center gallery-item";
                   div.setAttribute("data-aos", "zoom-in");
                   div.setAttribute("data-aos-delay", `${i * 100}`);
 
@@ -598,12 +1154,43 @@
                 }
               });
 
+              // If no images loaded, show placeholder message
+              if (galeri.children.length === 0) {
+                galeri.innerHTML = `
+                  <div class="col-span-3 text-center py-8">
+                    <i class="fas fa-image text-4xl text-gray-400 mb-4"></i>
+                    <p class="text-gray-500">Galeri akan segera diupdate</p>
+                  </div>
+                `;
+              }
+
               setTimeout(() => AOS.refresh(), 500);
             }
           })
-          .catch((err) =>
-            console.error("❌ Gagal memuat data dari Apps Script:", err)
-          )
+          .catch((err) => {
+            console.error("❌ Gagal memuat data dari Apps Script:", err);
+
+            // Show fallback content
+            document.getElementById("kamar-count").textContent = "10+";
+            document.getElementById("harga-bulan").textContent = "Rp700rb";
+
+            const telp = document.getElementById("telp");
+            if (telp) telp.textContent = "0812-3456-7890";
+
+            document
+              .querySelectorAll(".wa-link")
+              .forEach((a) => (a.href = `https://wa.me/6281234567890`));
+
+            document
+              .querySelectorAll(".ig-link")
+              .forEach((a) => (a.href = `https://instagram.com/kosanyeljimmy`));
+
+            // Update loader text to indicate offline mode
+            const loaderText = document.querySelector(".loader-text");
+            if (loaderText) {
+              loaderText.textContent = "Data offline dimuat...";
+            }
+          })
           .finally(() => {
             setTimeout(() => {
               loader.classList.add("fade-out");
